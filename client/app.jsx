@@ -5,14 +5,25 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            signupForm: true,
+            homepage: true,
+            signupForm: false,
             shippingInfoForm: false,
-            creditCardForm: false
+            creditCardForm: false,
+            confirmationPage: false
         }
 
+        this.handleHomeToSignUp = this.handleHomeToSignUp.bind(this);
         this.handleSignupToShippingForm = this.handleSignupToShippingForm.bind(this);
         this.handleShippingToCCForm = this.handleShippingToCCForm.bind(this);
+        this.handleCCtoConfirmation = this.handleCCtoConfirmation.bind(this);
         this.handlePurchase = this.handlePurchase.bind(this);
+    }
+
+    handleHomeToSignUp() {
+        this.setState({
+            homepage: false,
+            signupForm: true
+        })
     }
 
     handleSignupToShippingForm() {
@@ -29,18 +40,35 @@ class App extends React.Component {
         })
     }
 
-    handlePurchase() {
+    handleCCtoConfirmation() {
         this.setState({
             creditCardForm: false,
-            signupForm: true
+            confirmationPage: true
+        })
+    }
+
+    handlePurchase() {
+        this.setState({
+            confirmationPage: false,
+            homepage: true
         })
     }
 
     render(){
+        if (this.state.homepage) {
+            return (
+                <div>
+                    <h2>Welcome!</h2>
+                    <p>Buy this awesome thing</p>
+                    <button onClick={this.handleHomeToSignUp}>Checkout</button>
+                </div>
+            )
+        }
+
         if (this.state.signupForm) {
             return(
                 <div>
-                    <h2>Checkout Mini-App</h2>
+                    <h2>Checkout</h2>
                     <h3>Signup</h3>
                     <form id="signup">
                         <label>Name: 
@@ -64,7 +92,7 @@ class App extends React.Component {
         if (this.state.shippingInfoForm) {
             return(
                 <div>
-                    <h2>Checkout Mini-App</h2>
+                    <h2>Checkout</h2>
                     <h3>Shipping Info</h3>
                     <form id="shipping-info">
                         <label>Address Line 1: 
@@ -96,7 +124,7 @@ class App extends React.Component {
         if (this.state.creditCardForm) {
             return(
                 <div>
-                    <h2>Checkout Mini-App</h2>
+                    <h2>Checkout</h2>
                     <h3>Credit Card Details</h3>
                     <form id="shipping-info">
                         <label>Credit Card Number: 
@@ -115,8 +143,18 @@ class App extends React.Component {
                             <input name="billing-code" className="input-box"/>
                         </label>
                         <br /><br />
-                        <input type="submit" value="Purchase" onClick={this.handlePurchase} />
+                        <input type="submit" value="Purchase" onClick={this.handleCCtoConfirmation} />
                     </form>
+                </div>
+            )
+        }
+
+        if (this.state.confirmationPage) {
+            return (
+                <div>
+                    <h2>Confirmation</h2>
+                    <p>Name, Shipping Info, CC info</p>
+                    <button onClick={this.handlePurchase}>Purchase</button>
                 </div>
             )
         }
