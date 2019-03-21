@@ -4,7 +4,7 @@
   "description": "full stack mini app for a shopping cart checkout experience",
   "main": "index.js",
   "scripts": {
-    "react-dev": "babel client --out-dir public --presets=env,react --source-maps inline",
+    "react-dev": "babel client --out-dir public --presets=env,react --source-maps inline --watch",
     "start": "nodemon server.js"
   },
   "repository": {
