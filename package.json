@@ -1,0 +1,27 @@
+{
+  "name": "checkout-mini-app",
+  "version": "1.0.0",
+  "description": "full stack mini app for a shopping cart checkout experience",
+  "main": "index.js",
+  "scripts": {
+    "react-dev": "babel client --out-dir public --presets=env,react --source-maps inline",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adriennelim/checkout-mini-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adriennelim/checkout-mini-app/issues"
+  },
+  "homepage": "https://github.com/adriennelim/checkout-mini-app#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "nodemon": "^1.18.10"
+  }
+}
